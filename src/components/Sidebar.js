@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import NavListItem from '../shared/NavListItem'
+import NavListItem from '../shared/NavListItem';
 
 const Wrapper = styled.div`
   width: 220px;
@@ -12,10 +12,11 @@ const Wrapper = styled.div`
   color: #f1f1f1;
 `
 const Image = styled.img`
-  width: 100px;
-  height: 62px;
+  width: 91px;
+  height: 70px;
   margin: 10px 0;
 `
+// Height:62px, width:100px for snap logo;
 
 class Sidebar extends Component {
   state = {
@@ -26,7 +27,7 @@ class Sidebar extends Component {
   render() {
     return (
       <Wrapper>
-        <Image src="/images/snappylogo.png" alt="logo" />
+        <Image src="/images/logo.png" alt="logo" />
         <NavListItem />
       </Wrapper>
     )
