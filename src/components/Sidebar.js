@@ -1,10 +1,13 @@
 import React, { Component } from "react";
+import { Link } from 'react-router-dom';
 import styled from "styled-components/macro";
 import NavListItem from "../shared/NavListItem";
 
 const Wrapper = styled.div`
 	width: 220px;
 	height: 100vh;
+  position: sticky;
+  top: 0;
 	background: #43425d;
 	display: flex;
 	flex-direction: column;
@@ -21,7 +24,9 @@ const Image = styled.img`
 const Sidebar = props => {
 	return (
 		<Wrapper>
+			<Link to="/home">
 			<Image src="/images/logo.png" alt="logo" />
+			</Link>
 			<NavListItem />
 		</Wrapper>
 	);

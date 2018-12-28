@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components/macro';
+import { NavLink } from "react-router-dom";
 import { FiBarChart2 } from 'react-icons/fi';
 import { FiMail } from 'react-icons/fi'
 // import { IoIosBarcode } from 'react-icons/io';
@@ -15,6 +16,10 @@ const Wrapper = styled.div`
   margin-top: 30%;
 `
 
+const StyledNavLink = styled(NavLink)`
+  text-decoration: none;
+`
+
 const InnerWrapper = styled.div`
   margin-top: 0;
 `
@@ -24,8 +29,6 @@ const InnerDiv = styled.div`
   color: #f1f1f1;
   padding-left: 1em;
   padding-bottom: 5px;
-  border-left: ${props => props.key === props.val ? '2px solid #dbbc5e' : '0'};
-  background-color: ${props => props.active ? '#2c3e50' : 'transparent'};
   }
 `
 const NavIcon = styled.div`
@@ -37,39 +40,58 @@ const NavIcon = styled.div`
 `
 const NavText = styled.div`
 margin: 24px 0 15px 6px;
+text-decoration: none;
 `
 
 class NavListItem extends Component {
   constructor(props){
     super(props)
     this.state = {
-      icons: [<FiBarChart2 />, <FiMail />, <FaTachometerAlt />, <FiUsers />, <FiSettings />],
-      names: ['Home', 'Inbox', 'Devices', 'Customers', 'Settings'],
+      icons: [<FiMail />, <FaTachometerAlt />, <FiUsers />, <FiSettings />],
+      names: ['Inbox', 'Devices', 'Customers', 'Settings'],
       highlighted: '',
       val: null
     }
   }
 
-  handleHighlight = (i,e) => {
-    console.log(this.state.val);
-    this.setState({
-      highlighted: !this.state.highlighted,
-      val: i
-    })
-  }
-
   render() {
     return (
       <Wrapper>
-        <InnerWrapper>
-          {this.state.names.map((item, i) => {
-            return (
-              <InnerDiv key={i} val={i} active={this.state.highlighted} onClick={()=>this.handleHighlight(i)}>
-                <NavIcon>{this.state.icons[i]}</NavIcon><NavText>{item}</NavText>
-              </InnerDiv>
-            )
-          })}
-        </InnerWrapper>
+        <StyledNavLink to="/home" activeStyle={{borderLeft:"3px solid #dbbc5e", background:"#2c3e50"}}>
+          <InnerWrapper>
+            <InnerDiv>
+              <NavIcon><FiBarChart2 /></NavIcon><NavText>Home</NavText>
+            </InnerDiv>
+          </InnerWrapper>
+        </StyledNavLink>
+        <StyledNavLink to="/mail" activeStyle={{borderLeft:"3px solid #dbbc5e", background:"#2c3e50"}}>
+          <InnerWrapper>
+            <InnerDiv>
+              <NavIcon><FiMail /></NavIcon><NavText>Inbox</NavText>
+            </InnerDiv>
+          </InnerWrapper>
+        </StyledNavLink>
+        <StyledNavLink to="/devices" activeStyle={{borderLeft:"3px solid #dbbc5e", background:"#2c3e50"}}>
+          <InnerWrapper>
+            <InnerDiv>
+              <NavIcon><FaTachometerAlt /></NavIcon><NavText>Devices</NavText>
+            </InnerDiv>
+          </InnerWrapper>
+        </StyledNavLink>
+        <StyledNavLink to="/customers" activeStyle={{borderLeft:"3px solid #dbbc5e", background:"#2c3e50"}}>
+          <InnerWrapper>
+            <InnerDiv>
+              <NavIcon><FiBarChart2 /></NavIcon><NavText>Customers</NavText>
+            </InnerDiv>
+          </InnerWrapper>
+        </StyledNavLink>
+        <StyledNavLink to="/settings" activeStyle={{borderLeft:"3px solid #dbbc5e", background:"#2c3e50"}}>
+          <InnerWrapper>
+            <InnerDiv>
+              <NavIcon><FiBarChart2 /></NavIcon><NavText>Settings</NavText>
+            </InnerDiv>
+          </InnerWrapper>
+        </StyledNavLink>
       </Wrapper>
     )
   }
