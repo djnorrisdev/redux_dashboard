@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import styled, { ThemeProvider } from "styled-components/macro";
 import Card from '../../shared/Card';
+import DemoSummary from "../DemoSummary";
 
 const Wrapper = styled.div`
 display: flex;
@@ -22,7 +23,8 @@ class MailLanding extends Component {
       <Wrapper>
         <div>
         <ThemeProvider theme={large}>
-          <Card />
+          <Card>
+          </Card>
         </ThemeProvider>
         </div>
       </Wrapper>

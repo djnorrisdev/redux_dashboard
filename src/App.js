@@ -10,6 +10,8 @@ import MailLanding from './components/Mail/MailLanding';
 const Wrapper = styled.div`
   display: flex;
   background-color: #F4F4F4;
+  max-width: 1600px;
+  margin: 0 auto;
 `
 const RightContainer = styled.div`
   display: flex;

@@ -1,49 +1,73 @@
 import React, { Component } from 'react';
-import ReactApexChart from 'react-apexcharts';
+import { Bar } from "react-chartjs-2";
 
 class TotalUseChart extends Component {
   constructor(props) {
-    super(props);
-
-    this.state = {
-      options: {
-        dataLabels: {
-          enabled: false
-        },
-        stroke: {
-          curve: 'smooth'
-        },
-
-
-        xaxis: {
-          type: 'datetime',
-          categories: ["2018-09-19T00:00:00", "2018-09-19T01:30:00", "2018-09-19T02:30:00",
-            "2018-09-19T03:30:00", "2018-09-19T04:30:00", "2018-09-19T05:30:00",
-            "2018-09-19T06:30:00"
-          ],
-        },
-        tooltip: {
-          x: {
-            format: 'dd/MM/yy HH:mm'
-          },
-        }
-      },
-      series: [{
-        name: 'series1',
-        data: [31, 40, 28, 51, 42, 109, 100]
-      }, {
-        name: 'series2',
-        data: [11, 32, 45, 32, 34, 52, 41]
-      }],
-    }
+		super(props);
+		this.state = {
+      chartData: {}
+    };
+  }
+  componentWillMount() {
+    this.getChartData();
   }
 
-  render() {
-    return (
-      <div id="chart">
-        <ReactApexChart options={this.state.options} series={this.state.series} type="area" width="100%" height="auto" />
-      </div>
-    )
-  }  
+  getChartData = () => {
+    // Ajax call goes here
+    this.setState({
+      chartData: {
+        labels: ['Boston', 'Worcester', 'Springfield', 'Lowell', 'Cambridge', 'New Bedford'],
+        datasets: [
+          {
+            label: 'Population',
+            data: [
+              617594,
+              181045,
+              152060,
+              106519,
+              105064,
+              95000
+            ],
+            backgroundColor: [
+              'rgba(255,99,132,0.6',
+              'rgba(54,162,235,0.6',
+              'rgba(255,206,86,0.6',
+              'rgba(75,192,192,0.6',
+              'rgba(153,102,255,0.6',
+              'rgba(255,159,64,0.6',
+              'rgba(255,99,132,0.6',
+            ]
+          }
+        ]
+      }
+    })
+  }
+  static defaultProps = {
+    displayTitle: true,
+    displayLegend: true,
+    legendPosition: 'right',
+    location: 'City'
+  }
+
+	render() {
+		return (
+			<div className="chart">
+        <Bar 
+          data={this.state.chartData}
+          options={{
+            title: {
+              display: this.props.displayTitle,
+              text: 'Largest Cities in '+ this.props.location,
+              fontSize: 25
+            },
+            legend: {
+              display: this.props.displayLegend,
+              position: this.props.legendPosition
+            }
+          }}
+        />
+			</div>
+		);
+	}
 }
 export default TotalUseChart;

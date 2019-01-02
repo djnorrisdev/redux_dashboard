@@ -1,8 +1,8 @@
 import React, {Component} from "react";
 import styled from "styled-components/macro";
 import Card from '../shared/Card';
-import TotalUseChart from "./TotalUseChart";
 import DemoSummary from "./DemoSummary";
+import TotalUseChart from "./TotalUseChart";
 
 const Wrapper = styled.div`
   margin: 20px;
@@ -20,11 +20,11 @@ const TitleWrapper = styled.div`
   text-align: center;
 `
 const SmallCard = styled.div`
-  width: 43%;
   box-shadow: 0 4px 8px 0 rgba(17,17,17,0.1);
   background: #fefefe;
   border-radius: 10px;
   padding: 2%;
+  height: 350px;
 `
 const LargeCard = styled.div`
   width: 90.5%;
@@ -37,6 +37,13 @@ const LargeCard = styled.div`
 `
 
 class Home extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      chartData: {}
+    }
+  }
+
   render() {
     return (
       <Wrapper>
@@ -52,7 +59,7 @@ class Home extends Component {
         <InnerWrapper>
               <LargeCard>
                 <TitleWrapper>Total Use</TitleWrapper>
-                <TotalUseChart />
+                <TotalUseChart location="Massachusetts" legendPosition='bottom'/>
               </LargeCard>
         </InnerWrapper>
       </Wrapper>

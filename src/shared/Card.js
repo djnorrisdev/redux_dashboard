@@ -3,7 +3,7 @@ import styled, {ThemeProvider} from 'styled-components/macro';
 
 const CardBox = styled.div`
 width: ${props => props.theme.width};
-height: ${props => props.theme.height};
+min-height: ${props => props.theme.height};
 box-shadow: ${props => props.theme.shadow};
 background-color: ${props => props.theme.bg};
 border-radius: ${props => props.theme.radius};
