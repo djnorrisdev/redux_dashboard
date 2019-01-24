@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { connect } from 'react-redux';
+import { fetchDemoSummary } from './reduxFolder/actions';
 import styled from "styled-components/macro";
 import { Bar } from "react-chartjs-2";
 import axios from 'axios';
@@ -29,23 +31,43 @@ class DemoSummary extends Component {
       }
     };
   }
-  componentWillMount() {
-    this.getChartData();
+  // componentWillMount() {
+  //   this.getChartData();
+  // }
+  componentDidMount () {
+    this.props.fetchDemoSummary();
   }
-  getChartData = () => {
-    axios.get(`http://localhost:3000/townData`)
-		.then (res => {
-      const towns = res.data.map(item => item.town)
-      const population = res.data.map(item => item.data)
-			const chartData = {...this.state.chartData}
-      chartData.labels = towns;
-      chartData.datasets[0].data = population;
-      this.setState({
-        ...this.state, chartData
-      })
-		})
-		.catch(error => console.log(error, this.state.townData))
-  }
+
+  // setChartData = () => {
+  //   const data = this.props.summaryData;
+  //   if (data === []) {
+  //     return;
+  //   } else {
+  //   const towns = data.map(item => item.town)
+  //   const population = data.map(item => item.data)
+  //   const chartData = {...this.state.chartData}
+  //   chartData.labels = towns;
+  //   chartData.datasets[0].data = population;
+  //   this.setState({
+  //     ...this.state, chartData
+  //   })
+  // }
+  // }
+
+  // getChartData = () => {
+  //   axios.get(`http://localhost:3000/townData`)
+	// 	.then (res => {
+  //     const towns = res.data.map(item => item.town)
+  //     const population = res.data.map(item => item.data)
+	// 		const chartData = {...this.state.chartData}
+  //     chartData.labels = towns;
+  //     chartData.datasets[0].data = population;
+  //     this.setState({
+  //       ...this.state, chartData
+  //     })
+	// 	})
+	// 	.catch(error => console.log(error, this.state.townData))
+  // }
   
   static defaultProps = {
     displayTitle: true,
@@ -55,7 +77,7 @@ class DemoSummary extends Component {
   }
 
 	render() {
-    console.log(this.state.chartData.datasets);
+    console.log(this.props.summaryData);
 		return (
 			<div className="chart">
         <Bar 
@@ -76,4 +98,12 @@ class DemoSummary extends Component {
 		);
 	}
 }
-export default DemoSummary;
+
+const mapStateToProps = state => {
+  console.log('state: ' + state)
+  return {
+    summaryData: state
+  }
+}
+
+export default connect(mapStateToProps, { fetchDemoSummary })(DemoSummary);

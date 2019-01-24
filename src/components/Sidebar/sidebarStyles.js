@@ -24,5 +24,5 @@ export const Image = styled.img`
 width: 91px;
 height: 70px;
 margin: 15px 0;
-animation: ${rotate} 25s linear infinite;
+animation: ${rotate} 60s linear infinite;
 `;

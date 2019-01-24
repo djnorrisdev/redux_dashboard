@@ -8,7 +8,7 @@ module.exports = {
     codeFrame: false
   },
   extends: [
-    'airbnb-standard'
+    // 'airbnb-standard'
   ],
   "rules": {
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
