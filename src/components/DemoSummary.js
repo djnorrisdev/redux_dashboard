@@ -46,31 +46,7 @@ class DemoSummary extends Component {
 		})
 		.catch(error => console.log(error, this.state.townData))
   }
-  // getChartData = () => {
-  //   let newLabels = [];
-  //   let newDataSet = [];
-  //   axios.get(`http://localhost:3000/townData`) 
-	// 	.then (res => {
-  //     res.data.map((item) => {
-  //       newLabels.push(item.town)
-  //       newDataSet.push(item.data)
-  //     })
-	// 			this.setState({
-	// 				chartData: {
-  //             ...this.state.chartData,
-  //             labels: newLabels,
-  //         },
-  //         chartData: {
-  //           ...this.state.chartData,
-  //           datasets: {
-  //             ...this.state.chartData.datasets[0],
-  //               data: newDataSet
-  //           }
-  //         }
-	// 			})
-	// 	})
-	// 	.catch(error => console.log(error, this.state.townData))
-  // }
+  
   static defaultProps = {
     displayTitle: true,
     displayLegend: true,
@@ -101,32 +77,3 @@ class DemoSummary extends Component {
 	}
 }
 export default DemoSummary;
-
-// Static data
-// this.setState({
-    //   chartData: {
-    //     labels: ['Boston', 'Worcester', 'Springfield', 'Lowell', 'Cambridge', 'New Bedford'],
-    //     datasets: [
-    //       {
-    //         label: 'Population',
-    //         data: [
-    //           617594,
-    //           181045,
-    //           152060,
-    //           106519,
-    //           105064,
-    //           95000
-    //         ],
-    //         backgroundColor: [
-    //           'rgba(255,99,132,0.6',
-    //           'rgba(54,162,235,0.6',
-    //           'rgba(255,206,86,0.6',
-    //           'rgba(75,192,192,0.6',
-    //           'rgba(153,102,255,0.6',
-    //           'rgba(255,159,64,0.6',
-    //           'rgba(255,99,132,0.6',
-    //         ]
-    //       }
-    //     ]
-    //   }
-    // })

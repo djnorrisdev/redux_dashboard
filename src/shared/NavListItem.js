@@ -81,14 +81,14 @@ class NavListItem extends Component {
         <StyledNavLink to="/customers" activeStyle={{borderLeft:"3px solid #dbbc5e", background:"#2c3e50"}}>
           <InnerWrapper>
             <InnerDiv>
-              <NavIcon><FiBarChart2 /></NavIcon><NavText>Customers</NavText>
+              <NavIcon><FiUsers /></NavIcon><NavText>Customers</NavText>
             </InnerDiv>
           </InnerWrapper>
         </StyledNavLink>
         <StyledNavLink to="/settings" activeStyle={{borderLeft:"3px solid #dbbc5e", background:"#2c3e50"}}>
           <InnerWrapper>
             <InnerDiv>
-              <NavIcon><FiBarChart2 /></NavIcon><NavText>Settings</NavText>
+              <NavIcon><FiSettings/></NavIcon><NavText>Settings</NavText>
             </InnerDiv>
           </InnerWrapper>
         </StyledNavLink>
