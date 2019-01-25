@@ -11,49 +11,29 @@ class DemoSummary extends Component {
 		super(props);
 		this.state = {
       townData: [],
-      chartData: {
-        labels: '',
-        datasets: [
-          {
-            label: 'Population',
-            data: '',
-            backgroundColor: [
-              'rgba(255,99,132,0.6',
-              'rgba(54,162,235,0.6',
-              'rgba(255,206,86,0.6',
-              'rgba(75,192,192,0.6',
-              'rgba(153,102,255,0.6',
-              'rgba(255,159,64,0.6',
-              'rgba(255,99,132,0.6',
-            ]
-          }
-        ]
-      }
+      
     };
+    
   }
-  // componentWillMount() {
-  //   this.getChartData();
-  // }
+
+
+
   componentDidMount () {
     this.props.fetchDemoSummary();
   }
 
-  // setChartData = () => {
-  //   const data = this.props.summaryData;
-  //   if (data === []) {
-  //     return;
-  //   } else {
-  //   const towns = data.map(item => item.town)
-  //   const population = data.map(item => item.data)
-  //   const chartData = {...this.state.chartData}
-  //   chartData.labels = towns;
-  //   chartData.datasets[0].data = population;
-  //   this.setState({
-  //     ...this.state, chartData
-  //   })
-  // }
-  // }
+  
 
+    // setChartData = () => {
+    //   const { data, labels } = this.props.summaryData
+    //   console.log(data, labels)
+    //   const newData = {...this.state.chartData}
+    //   newData.labels = labels;
+    //   newData.datasets[0].data = data;
+    //   this.setState({
+    //     ...this.state, newData
+    //   })
+    // }
   // getChartData = () => {
   //   axios.get(`http://localhost:3000/townData`)
 	// 	.then (res => {
@@ -80,8 +60,9 @@ class DemoSummary extends Component {
     console.log(this.props.summaryData);
 		return (
 			<div className="chart">
+        {this.props.summaryData ? 
         <Bar 
-          data={this.state.chartData}
+          data={this.props.summaryData}
           options={{
             title: {
               display: this.props.displayTitle,
@@ -93,16 +74,15 @@ class DemoSummary extends Component {
               position: this.props.legendPosition
             }
           }}
-        />
+        /> : null }
 			</div>
 		);
 	}
 }
 
-const mapStateToProps = state => {
-  console.log('state: ' + state)
+const mapStateToProps = ({ summaryData }) => {
   return {
-    summaryData: state
+    summaryData: summaryData.chartData
   }
 }
 
