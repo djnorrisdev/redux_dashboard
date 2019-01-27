@@ -15,3 +15,5 @@ This project is a SPA for an admin dashboard.
 -Styled Components
 
 -chart.js
+
+-Semantic UI
