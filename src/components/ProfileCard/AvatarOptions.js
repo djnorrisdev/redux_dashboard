@@ -23,6 +23,7 @@ const Avatar = styled.img`
 
 const AvBtn = styled(Button)`
   &&& {
+
     margin-top: 1.5rem;
     :last-child {
       padding: .78571429em 3.9em .78571429em;
@@ -30,28 +31,58 @@ const AvBtn = styled(Button)`
   }
 `;
 
+const CenteredModal = styled(Modal)`
+  &&& {
+    .header, .content, .actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    }
+  }
+`
 
-const AvatarOptions = (props) =>  (
-  <Wrapper>
-    <Avatar src={require('../../shared/img/21.jpg')} alt='user profile picture'>
-    </Avatar>
-    <div style={{marginTop:'1.5rem'}}>
-      <MdBorderColor />
-      <span style={{marginLeft:'0.5rem'}}>Edit Avatar</span>
-    </div>
-    {/* <div style={{marginTop:'1.5rem'}}>
-    </div> */}
-    <Modal trigger={<AvBtn color='blue' content='Change Password'/>} basic size='small'>
-    <PasswordModal />
-    </Modal>
-    {/* <AvBtn color='blue'onClick={handleModal}>
-      Change Password
-    </AvBtn> */}
-    {/* <div style={{marginTop:'1.5rem'}}>
-    </div> */}
-    <AvBtn color='red'>
-      Logout
-    </AvBtn>
-  </Wrapper>
-)
+
+class AvatarOptions extends Component {
+
+  handleLogout = (e) => {
+    e.stopPropagation();
+    console.log('logged out')
+  }
+
+  render() {
+    return (
+      <Wrapper>
+        <Avatar src={require('../../shared/img/21.jpg')} alt='user profile picture'>
+        </Avatar>
+        <div style={{marginTop:'1.5rem'}}>
+          <MdBorderColor />
+          <span style={{marginLeft:'0.5rem'}}>Edit Avatar</span>
+        </div>
+        <Modal 
+          trigger={<AvBtn color='blue' content='Change Password'/>}
+          basic
+          size='tiny'
+          content= {<PasswordModal name='password'/>}
+          closeIcon
+          />
+        <CenteredModal
+        trigger={<AvBtn color='red' content='Logout' />}
+        basic
+        size='mini'
+        header='Logout'
+        content='Would You Like to Log Out?'
+        actions={[{ key: 'Cancel', content: 'Cancel', color:'red' }, {key: 'logout', content:'Logout', color:'green', onClickCapture:this.handleLogout}]}
+      />
+        {/* <Modal 
+          trigger={<AvBtn color='red' content='Logout' />}
+          basic
+          size='small'
+          >
+          <PasswordModal name='logout'/>
+        </Modal> */}
+      </Wrapper>
+    )
+  }
+}
 export default AvatarOptions;

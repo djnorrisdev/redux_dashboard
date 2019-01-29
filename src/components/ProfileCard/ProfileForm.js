@@ -50,7 +50,7 @@ class ProfileForm extends Component {
           Address
         </NameWrapper>
         <Form.Group widths='equal'>
-          <Form.Input fluid placeholder='Email Address' />
+          <Form.Input fluid placeholder='Email' />
         </Form.Group>
         <NameWrapper>
           Bio
