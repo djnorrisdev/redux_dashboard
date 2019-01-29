@@ -15,7 +15,8 @@ class PasswordModal extends Component {
       newPassword: '',
       currentPasswordError: false,
       newPasswordError: false,
-      formError: false
+      formError: false,
+      sucess: false
     }
   }
 
@@ -26,46 +27,34 @@ class PasswordModal extends Component {
   }
 
   handleSubmit = (e) => {
-    console.log(e.currentTarget)
-    const { currentPassword, currentPasswordError, newPassword, newPasswordError } = this.state;
+    console.log(e)
+    const { currentPassword, currentPasswordError, newPassword, newPasswordError, success } = this.state;
     e.preventDefault();
-
 
     if (currentPassword === '' || currentPassword.length < 8) {
       this.setState({
-        currentPasswordError : true
+        currentPasswordError : true,
+        formError: true
       })
-    } else {
-      this.setState({
-        currentPasswordError : false
-      })
-    }
+    } 
+    
     if (newPassword === '' || newPassword.length < 8) {
       this.setState({
-        newPasswordError : true
-      })
-    } else {
-      this.setState({
-        newPasswordError : false
-      })
-    }
-    if(currentPasswordError && newPasswordError ) {
-      this.setState({
+        newPasswordError : true,
         formError: true
       })
-    } else if (currentPasswordError || newPasswordError){
+    } 
+    if (currentPassword.length > 8 || newPassword.length > 8) {
       this.setState({
-        formError: true
-      })
-    } else {
-      this.setState({
-        formError: false
+        formError: false,
+        success: !success
       })
     }
+
   }
 
   render() {
-    const { currentPassword, newPassword, currentPasswordError, newPasswordError } = this.state;
+    const { currentPassword, newPassword, formError, currentPasswordError, newPasswordError } = this.state;
     console.log('current: ' + this.state.currentPassword, 'new: ' + this.state.newPassword, 'error: ' + this.state.formError, 'curERR: ' + currentPasswordError, 'newERR: ' + newPasswordError)
     return (
       this.props.name === 'password' ?
@@ -75,7 +64,7 @@ class PasswordModal extends Component {
             <Form error={this.state.formError} onSubmit={this.handleSubmit}>
               <NameWrapper>
                 Current Password
-          </NameWrapper>
+              </NameWrapper>
               <Form.Input
                 fluid
                 width='12'
@@ -83,9 +72,8 @@ class PasswordModal extends Component {
                 type='password'
                 value={currentPassword}
                 onChange={(e) => this.setState({currentPassword: e.target.value})}
-                error={currentPasswordError}
               />
-              {currentPasswordError ? <Message
+              {formError && currentPasswordError ? <Message
                   error
                   content='current password does not meet length requirements'
                 /> : null}
@@ -99,9 +87,8 @@ class PasswordModal extends Component {
                 type='password'
                 value={newPassword}
                 onChange={(e) => this.setState({newPassword: e.target.value})}
-                error={newPasswordError}
               />
-              {newPasswordError ? <Message
+              {formError && newPasswordError ? <Message
                   error
                   content='new password does not meet length requirements'
                 /> : null}
