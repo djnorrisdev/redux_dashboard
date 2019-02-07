@@ -3,6 +3,7 @@ import styled from 'styled-components/macro';
 import Card from '../shared/Card';
 import DemoSummary from './DemoSummary';
 import TotalUseChart from './TotalUseChart';
+import WeatherCard from './weatherCard/WeatherCard';
 
 const Wrapper = styled.div`
   margin: 20px;
@@ -47,7 +48,9 @@ class Home extends Component {
     return (
       <Wrapper>
         <InnerWrapper>
-          <Card />
+          <Card>
+            <WeatherCard />
+          </Card>
           <Card>
             <TitleWrapper>
               Weekly Demographics Summary

@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { getUserData } from '../reduxFolder/actions'
+import { submitPasswordInput } from '../reduxFolder/actions';
 import { Button, Header, Modal, Input, Form, Message } from 'semantic-ui-react';
 import styled from 'styled-components/macro';
 
@@ -16,8 +19,12 @@ class PasswordModal extends Component {
       currentPasswordError: false,
       newPasswordError: false,
       formError: false,
-      sucess: false
+      success: false
     }
+  }
+
+  componentDidMount() {
+    this.props.getUserData();
   }
 
   handleCancel = () => {
@@ -26,8 +33,7 @@ class PasswordModal extends Component {
     })
   }
 
-  handleSubmit = (e) => {
-    console.log(e)
+  handleValidate = (e) => {
     const { currentPassword, currentPasswordError, newPassword, newPasswordError, success } = this.state;
     e.preventDefault();
 
@@ -53,9 +59,18 @@ class PasswordModal extends Component {
 
   }
 
+  handleSubmit = async (e) => {
+    const { success, currentPassword, newPassword } = this.state;
+    let password = {currentPassword, newPassword}
+    await this.handleValidate(e);
+    return this.props.submitPasswordInput(password)
+  }
+
   render() {
     const { currentPassword, newPassword, formError, currentPasswordError, newPasswordError } = this.state;
-    console.log('current: ' + this.state.currentPassword, 'new: ' + this.state.newPassword, 'error: ' + this.state.formError, 'curERR: ' + currentPasswordError, 'newERR: ' + newPasswordError)
+    // console.log('current: ' + this.state.currentPassword, 'new: ' + this.state.newPassword, 'error: ' + this.state.formError, 'curERR: ' + currentPasswordError, 'newERR: ' + newPasswordError)
+    const find = this.props.password.map(item => item.currentPassword)
+    console.log(find)
     return (
       this.props.name === 'password' ?
         <React.Fragment>
@@ -108,4 +123,10 @@ class PasswordModal extends Component {
     )
   }
 }
-export default PasswordModal;
+
+const mapStateToProps = ({ password }) => {
+ return {
+   password
+ }
+}
+export default connect(mapStateToProps, { submitPasswordInput, getUserData })(PasswordModal);

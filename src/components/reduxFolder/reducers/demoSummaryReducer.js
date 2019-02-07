@@ -8,7 +8,7 @@ export default (state = [], action) => {
       const { payload } = action
       const towns = payload.map(item => item.town)
       const population = payload.map(item => item.data)
-      console.log('towns: ' + towns);
+      // console.log('towns: ' + towns);
       return {
         chartData: {
           labels: towns,
