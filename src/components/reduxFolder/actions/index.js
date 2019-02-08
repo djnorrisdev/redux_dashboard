@@ -1,11 +1,9 @@
 import localServer from '../../../apis/localServer';
-import locationFinder from '../../../apis/locationFinder';
 import weather from '../../../apis/weather';
 
 export const fetchWeatherData = () => async dispatch => {
-  const locResponse = await locationFinder.get('/json');
-  const response = await weather.get(`/data/2.5/weather?q=${locResponse.data.city}&appid=f03c13d8b2b69091950481186cd86bd1`)
-
+  const response = await weather.get('/data/2.5/weather?q=Hyattsville&units=imperial&appid=f03c13d8b2b69091950481186cd86bd1')
+console.log(response.data);
   dispatch({
     type: 'FETCH_WEATHER_DATA',
     payload: response.data

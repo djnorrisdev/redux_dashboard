@@ -57,7 +57,7 @@ class DemoSummary extends Component {
   }
 
 	render() {
-    console.log(this.props.summaryData);
+    // console.log(this.props.summaryData);
 		return (
 			<div className="chart">
         {this.props.summaryData ? 
